@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import axios from "axios";
 
@@ -35,65 +35,74 @@ const DetailScreen = ({ route }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: imageUrl }}
-        style={{ height: 240, width: "100%" }}
-        resizeMode="cover"
-      />
-      <View style={styles.inlineAttractionAndWeatherContainer}>
-        <Text style={styles.itemAttraction}>{attraction}</Text>
-        <View style={styles.inlineWeathercontainer}>
-          <Text style={styles.inlineTemprature}>
-            {weatherData
-              ? `${Math.round(weatherData.main.temp)}°C`
-              : "Loading..."}
-          </Text>
-          <View style={styles.inlineTextContainerVertical}>
-            <Text style={styles.inlineWeatherDescription}>
-              {weatherData ? weatherData.weather[0].description : "Loading..."}
-            </Text>
-            <Text style={styles.inlineWeatherDescription}>
+    <ScrollView style={styles.scrollView}>
+      <View style={styles.container}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={{ height: 240, width: "100%" }}
+          resizeMode="cover"
+        />
+        <View style={styles.inlineAttractionAndWeatherContainer}>
+          <Text style={styles.itemAttraction}>{attraction}</Text>
+          <View style={styles.inlineWeathercontainer}>
+            <Text style={styles.inlineTemprature}>
               {weatherData
-                ? `Humidity: ${weatherData.main.humidity}%`
+                ? `${Math.round(weatherData.main.temp)}°C`
                 : "Loading..."}
             </Text>
+            <View style={styles.inlineTextContainerVertical}>
+              <Text style={styles.inlineWeatherDescription}>
+                {weatherData
+                  ? weatherData.weather[0].description
+                  : "Loading..."}
+              </Text>
+              <Text style={styles.inlineWeatherDescription}>
+                {weatherData
+                  ? `Humidity: ${weatherData.main.humidity}%`
+                  : "Loading..."}
+              </Text>
+            </View>
           </View>
         </View>
+        <Text style={styles.itemDescription}>{category}</Text>
+        <Text style={styles.itemDescription}>{description}</Text>
+        <Text style={styles.itemDescription}>
+          {"Nearest Restaurant: "}
+          {restaurant}
+        </Text>
+        <Text style={styles.itemDescription}>
+          {"Nearest Bar: "}
+          {bar}
+        </Text>
+        <Text style={styles.itemDescription}>
+          {"Nearest Shop: "}
+          {shop}
+        </Text>
+
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: lat,
+            longitude: long,
+            latitudeDelta: 4,
+            longitudeDelta: 4,
+          }}
+        >
+          <Marker
+            coordinate={{ latitude: lat, longitude: long }}
+            draggable={true}
+          ></Marker>
+        </MapView>
       </View>
-      <Text style={styles.itemDescription}>{category}</Text>
-      <Text style={styles.itemDescription}>{description}</Text>
-      <Text style={styles.itemDescription}>
-        {"Nearest Restaurant: "}
-        {restaurant}
-      </Text>
-      <Text style={styles.itemDescription}>
-        {"Nearest Bar: "}
-        {bar}
-      </Text>
-      <Text style={styles.itemDescription}>
-        {"Nearest Shop: "}
-        {shop}
-      </Text>
-      <MapView
-        style={{ ...styles.map, flex: 1 }}
-        initialRegion={{
-          latitude: lat,
-          longitude: long,
-          latitudeDelta: 4,
-          longitudeDelta: 4,
-        }}
-      >
-        <Marker
-          coordinate={{ latitude: lat, longitude: long }}
-          draggable={true}
-        ></Marker>
-      </MapView>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollView: {
+    flex: 1,
+    marginBottom: 60,
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -102,6 +111,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   map: {
+    height: 300,
     width: "100%",
   },
   itemAttraction: {

@@ -29,9 +29,11 @@ const Attractions = ({ navigation }) => {
 
   function fetchAttractions() {
     const starCountRef = db.ref("attractions");
+    console.log("task 1");
+    console.log("task 2");
 
     starCountRef.on("value", (snapshot) => {
-      console.log("task finished2");
+      console.log("task 3");
 
       var allAttractions = [];
       snapshot.forEach((child) => {
@@ -48,7 +50,7 @@ const Attractions = ({ navigation }) => {
 
   const renderItem = ({ item }) => (
     <TouchableWithoutFeedback
-      onPress={() => navigation.navigate("AttractionDetail", item)}
+      onPress={() => navigation.navigate("AttractionDetail Screen", item)}
     >
       <View style={styles.container}>
         {item.imageUrl ? (
@@ -133,6 +135,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: "#fff",
+    marginBottom: 60,
   },
 
   container: {

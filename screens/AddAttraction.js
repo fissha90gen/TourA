@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
     padding: 10,
+    marginBottom: 60,
   },
 
   scrollContainer: {

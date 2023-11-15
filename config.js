@@ -5,14 +5,13 @@ import "firebase/compat/storage";
 import "firebase/compat/database";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDGF5oWyThkQ3VKP9FexoPRWqbEReiGUA8",
-  authDomain: "tourapp-e6330.firebaseapp.com",
-  databaseURL: "https://tourapp-e6330-default-rtdb.firebaseio.com",
-  projectId: "tourapp-e6330",
-  storageBucket: "tourapp-e6330.appspot.com",
-  messagingSenderId: "902373195552",
-  appId: "1:902373195552:web:d15e013c248ec4daede145",
-  measurementId: "G-497L0C354V",
+  apiKey: "AIzaSyAqgK7MNTzmjKclRvDWsMkypsv9QFu0xyU",
+  authDomain: "tourapp-cd099.firebaseapp.com",
+  databaseURL: "https://tourapp-cd099-default-rtdb.firebaseio.com",
+  projectId: "tourapp-cd099",
+  storageBucket: "tourapp-cd099.appspot.com",
+  messagingSenderId: "352473132866",
+  appId: "1:352473132866:web:aa97e2b563bcb0252762db",
 };
 
 if (!firebase.apps.length) {
